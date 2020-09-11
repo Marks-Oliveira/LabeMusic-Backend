@@ -41,11 +41,11 @@ export class UserController {
         try {
 
             const loginData: LoginInputDTO = {
-                email: req.body.email,
+                emailOrNickname: req.body.emailOrNickname,
                 password: req.body.password
             };
 
-            const accessToken = await UserController.UserBusiness.getUserByEmail(loginData);
+            const accessToken = await UserController.UserBusiness.getUserByEmailOrNickname(loginData);
 
             res.status(200).send({ accessToken });
 

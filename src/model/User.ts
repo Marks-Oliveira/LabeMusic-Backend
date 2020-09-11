@@ -2,8 +2,8 @@ export class User{
     constructor(
     private id: string,
     private name: string,
-    private email: string,
     private nickname: string,
+    private email: string,
     private password: string
     ){}
 
@@ -28,19 +28,19 @@ export class User{
     }
 
     static toUserModel(user: any): User {
-        return new User(user.id, user.name, user.email, user.nickname, user.password);
+        return new User(user.id, user.name, user.nickname, user.email, user.password);
     }
 
 }
 
-export interface UserInputDTO{
-    email: string;
+export interface UserInputDTO {
     name: string;
     nickname: string;
+    email: string;
     password: string;
 }
 
-export interface LoginInputDTO{
-    email: string;
+export interface LoginInputDTO {
+    emailOrNickname: string;
     password: string;
 }

@@ -3,8 +3,6 @@ import { User } from "../model/User";
 
 export class UserDatabase extends BaseDatabase {
 
-  private static TABLE_NAME = "User_Labemusic";
-
   public async registerUser(
     id: string,
     name: string,
@@ -21,19 +19,25 @@ export class UserDatabase extends BaseDatabase {
           email,
           password
         })
-        .into(UserDatabase.TABLE_NAME);
+        .into(this.tableNames.users);
     } catch (error) {
       throw new Error(error.sqlMessage || error.message);
     }
   }
 
-  public async getUserByEmail(email: string): Promise<User> {
-    const result = await this.getConnection()
-      .select("*")
-      .from(UserDatabase.TABLE_NAME)
-      .where({ email });
+  public async getUserByEmailOrNickname(emailOrNickname: string): Promise<User> {
+    try {
+      const result = await this.getConnection()
+        .select("*")
+        .from(this.tableNames.users)
+        .where({ email: emailOrNickname })     
+        .or.where({ nickname: emailOrNickname });
 
-    return User.toUserModel(result[0]);
+        return User.toUserModel(result[0]);  
+      
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message);
+    }
   }
 
 }
