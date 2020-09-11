@@ -1,8 +1,12 @@
 import knex from "knex";
 import Knex from "knex";
 
-
 export abstract class BaseDatabase {
+    protected tableNames = {
+        users: "User_LabeMusic",
+        musics: "Music_LabeMusic",
+        genres: "Genre_LabeMusic",
+    };
 
     private static connection: Knex | null = null;
 
