@@ -1,10 +1,9 @@
-import { UserInputDTO, LoginInputDTO, User } from "../model/User";
+import { UserInputDTO, LoginInputDTO } from "../model/User";
 import { UserDatabase } from "../data/UserDatabase";
 import { IdGenerator } from "../services/IdGenerator";
 import { HashManager } from "../services/HashManager";
 import { Authenticator } from "../services/Authenticator";
 import { InvalidParameterError } from "../error/InvalidParameterError"
-import { NotFoundError } from "../error/NotFoundError";
 
 export class UserBusiness {
     constructor (
@@ -46,20 +45,14 @@ export class UserBusiness {
         }
 
         const userFromDB = await this.userDatabase.getUserByEmailOrNickname(user.emailOrNickname);
-
-        let hashCompare: boolean = false;
-        let accessToken;
-
-        if (!userFromDB) {
-            throw new NotFoundError("User not found");
-        } else {
-            hashCompare = await this.hashManager.compare(user.password, userFromDB.getPassword());
-            accessToken = this.authenticator.generateToken({ id: userFromDB.getId() });
-        }
+        
+        const hashCompare = await this.hashManager.compare(user.password, userFromDB.getPassword());
 
         if (!hashCompare) {
             throw new InvalidParameterError("Invalid Password!");
         }
+        
+        const accessToken = this.authenticator.generateToken({ id: userFromDB.getId() });
 
         return accessToken;
     }

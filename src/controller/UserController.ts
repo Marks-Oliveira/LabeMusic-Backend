@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { UserInputDTO, LoginInputDTO} from "../model/User";
 import { UserBusiness } from "../business/UserBusiness";
-import { BaseDatabase } from "../data/BaseDatabase";
+import { BaseDatabase } from "../data/base/BaseDatabase";
 import { UserDatabase } from "../data/UserDatabase";
 import { IdGenerator } from "../services/IdGenerator";
 import { HashManager } from "../services/HashManager";

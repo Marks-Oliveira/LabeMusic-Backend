@@ -1,5 +1,6 @@
-import { BaseDatabase } from "./BaseDatabase";
+import { BaseDatabase } from "./base/BaseDatabase";
 import { User } from "../model/User";
+import { NotFoundError } from "../error/NotFoundError";
 
 export class UserDatabase extends BaseDatabase {
 
@@ -36,7 +37,7 @@ export class UserDatabase extends BaseDatabase {
         return User.toUserModel(result[0]);  
       
     } catch (error) {
-      throw new Error(error.sqlMessage || error.message);
+      throw new NotFoundError(error.sqlMessage || "User not found");
     }
   }
 

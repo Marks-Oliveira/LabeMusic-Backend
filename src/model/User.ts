@@ -1,11 +1,11 @@
-export class User{
+export class User {
     constructor(
-    private id: string,
-    private name: string,
-    private nickname: string,
-    private email: string,
-    private password: string
-    ){}
+        private id: string,
+        private name: string,
+        private nickname: string,
+        private email: string,
+        private password: string
+    ) {}
 
     getId(){
         return this.id;
