@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "ts-node-dev ./src/index.ts"
+    "start": "ts-node src/local.ts"
   },
   "keywords": [
     "api",

@@ -6,6 +6,7 @@ export abstract class BaseDatabase {
         users: "User_LabeMusic",
         musics: "Music_LabeMusic",
         genres: "Genre_LabeMusic",
+        musicGenreRelation: "Music_Genre_Relation"
     };
 
     private static connection: Knex | null = null;
