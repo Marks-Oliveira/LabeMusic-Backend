@@ -8,8 +8,8 @@ export class Music {
         private date: moment.Moment = moment("DD/MM/YYYY"),
         private file: string,
         private album: string,
-        private genres: string[],
-        private creatorId: string
+        private musicCreatorId: string,
+        private genres: string[]
     ) {}
 
     getId() {
@@ -37,11 +37,15 @@ export class Music {
     }
 
     getGenres() {
-        return this.genres;
+        return this.genres
     }
 
     getCreatorId() {
-        return this.creatorId;
+        return this.musicCreatorId;
+    }
+
+    setGenres(genres: string[]) {
+        this.genres = genres;
     }
 
     static toMusicModel(music: any): Music {
@@ -52,8 +56,8 @@ export class Music {
             music.date, 
             music.file,
             music.album,
-            music.genres,
-            music.music_creator_id
+            music.musicCreatorId,
+            music.genres
         );
     }
 
@@ -65,5 +69,16 @@ export interface MusicInputDTO {
     date: moment.Moment,
     file: string,
     album: string,
+    genres: string[]
+}
+
+export interface MusicOutputDTO {
+    id: string,
+    title: string,
+    author: string,
+    date: moment.Moment,
+    file: string,
+    album: string,
+    musicCreatorId: string,
     genres: string[]
 }

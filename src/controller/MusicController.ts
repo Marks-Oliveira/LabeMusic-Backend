@@ -39,4 +39,34 @@ export class MusicController {
         await BaseDatabase.destroyConnection();
     }
 
+    async getAllMusic(req: Request, res: Response) {
+        try {
+            const token = req.headers.authorization as string;
+
+            const result = await MusicController.MusicBusiness.getAllMusic(token);
+
+            res.status(200).send({ musics: result })
+        } catch (error) {
+            res.status(400).send({ error: error.message });
+        }
+
+        await BaseDatabase.destroyConnection();
+    }
+
+    async getMusicById(req: Request, res: Response) {
+        try {
+            const token = req.headers.authorization as string;
+
+            const musicId = req.params.id
+
+            const result = await MusicController.MusicBusiness.getMusicById(musicId ,token);
+
+            res.status(200).send({ music: result })
+        } catch (error) {
+            res.status(400).send({ error: error.message });
+        }
+
+        await BaseDatabase.destroyConnection();
+    }
+
 }

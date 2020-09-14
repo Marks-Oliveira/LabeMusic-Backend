@@ -13,7 +13,7 @@ export class UserBusiness {
         private authenticator: Authenticator
     ) {}
 
-    async registerUser(user: UserInputDTO) {
+    async registerUser(user: UserInputDTO): Promise<string> {
 
         if (!user.name || !user.nickname || !user.email || !user.password) {
             throw new InvalidParameterError("Missing input");
@@ -38,7 +38,7 @@ export class UserBusiness {
         return accessToken;
     }
 
-    async getUserByEmailOrNickname(user: LoginInputDTO) {
+    async getUserByEmailOrNickname(user: LoginInputDTO): Promise<string> {
 
         if (!user.emailOrNickname || !user.password) {
             throw new InvalidParameterError("Missing input");
