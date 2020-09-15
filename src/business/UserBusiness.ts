@@ -4,6 +4,7 @@ import { IdGenerator } from "../services/IdGenerator";
 import { HashManager } from "../services/HashManager";
 import { Authenticator } from "../services/Authenticator";
 import { InvalidParameterError } from "../error/InvalidParameterError"
+import { NotFoundError } from "../error/NotFoundError";
 
 export class UserBusiness {
     constructor (
@@ -45,6 +46,9 @@ export class UserBusiness {
         }
 
         const userFromDB = await this.userDatabase.getUserByEmailOrNickname(user.emailOrNickname);
+        if (!userFromDB) {
+            throw new NotFoundError("User not found")
+        }
         
         const hashCompare = await this.hashManager.compare(user.password, userFromDB.getPassword());
 

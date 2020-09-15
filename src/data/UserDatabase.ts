@@ -37,7 +37,7 @@ export class UserDatabase extends BaseDatabase {
         return User.toUserModel(result[0]);  
       
     } catch (error) {
-      throw new NotFoundError(error.sqlMessage || "User not found");
+      throw new Error(error.sqlMessage || error.message);
     }
   }
 

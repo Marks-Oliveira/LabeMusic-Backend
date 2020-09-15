@@ -12,7 +12,7 @@ describe("Testing createMusic on the Business layer", () => {
     let authenticator = {
 
     };
-    /*
+    
     test("Should return an error when receiving empty token", async () => {
         expect.assertions(2);
 
@@ -194,7 +194,7 @@ describe("Testing createMusic on the Business layer", () => {
             expect(error.message).toEqual("Missing input");
         }
     });
-    */
+    
     test("User must succeed when registering a music", async () => {
         expect.assertions(4);
 
@@ -236,4 +236,5 @@ describe("Testing createMusic on the Business layer", () => {
         );
         
     });
+    
 });
