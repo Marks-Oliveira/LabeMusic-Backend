@@ -151,7 +151,6 @@ export class MusicDatabase extends BaseDatabase {
 
       return musicsAndGenres;
 
-      //return Music.toMusicModel(result[0]);
     } catch (error) {
       throw new Error(error.sqlMessage || error.message);
     }

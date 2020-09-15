@@ -40,7 +40,7 @@ describe("Testing signup on the Business layer", () => {
             expect(error.message).toEqual("Missing input");
         }
     });
-    /*
+    
     test("Should return an error when receiving empty nickname", async () => {
         expect.assertions(2);
 
@@ -198,6 +198,6 @@ describe("Testing signup on the Business layer", () => {
         );
         expect(authenticator.generateToken).toHaveReturnedWith("token");
     });
-  */
+    
 }); 
 

@@ -15,7 +15,7 @@ describe("Testing login on the Business layer", () => {
     let authenticator = {
         generateToken: jest.fn(() => "token")
     };
-
+    
     test("Should return an error when receiving empty email or nickname", async () => {
         expect.assertions(2);
 
@@ -40,7 +40,7 @@ describe("Testing login on the Business layer", () => {
             expect(error.message).toEqual("Missing input");
         }
     });
-    /*
+    
     test("Should return an error when receiving empty password", async ()=>{
         expect.assertions(2);
 
@@ -69,7 +69,7 @@ describe("Testing login on the Business layer", () => {
     test("Should return error when the user is not found", async ()=>{
         expect.assertions(3);
 
-        let getUserByEmailOrNickname = jest.fn((email: string) => {return undefined});
+        let getUserByEmailOrNickname = jest.fn((email: string) => undefined);
 
         try {
 
@@ -196,5 +196,5 @@ describe("Testing login on the Business layer", () => {
         expect(compare).toHaveBeenCalledWith("223344", "223344");
         expect(authenticator.generateToken).toHaveReturnedWith("token");
     });
-    */
+    
 }); 
